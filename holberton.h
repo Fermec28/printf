@@ -8,5 +8,6 @@
 
 int _putchar(char *c, unsigned int lenght);
 int _printf(const char *format, ...);
+char getformat(char *s);
 
 #endif /* HOLBERTON_H */
