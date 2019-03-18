@@ -54,6 +54,7 @@ unsigned int str_length(char *str)
 int print_integer(va_list valist, options opt)
 {
 	char *str;
+	(void) opt;
 
 	str = number_to_string(va_arg(valist, int));
 	return (_putchar(str, str_length(str)));
@@ -66,6 +67,18 @@ int print_integer(va_list valist, options opt)
 int print_string(va_list valist, options opt)
 {
 	char *str = va_arg(valist, char*);
+	(void) opt;
+
+	return (_putchar(str, str_length(str)));
+}
+/**
+ * print_string - print string
+ * @valist: valist
+ */
+int print_float(va_list valist, options opt)
+{
+	char *str = va_arg(valist, char*);
+	(void) opt;
 
 	return (_putchar(str, str_length(str)));
 }

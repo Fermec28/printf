@@ -12,7 +12,8 @@ int _printf(const char *format, ...)
 {
 	va_list valist;
 	op_t operate;
-	char formatto, p;
+	options formatto;
+	char p;
 	int i = 0, bytes = 0;
 
 	va_start(valist, format);
@@ -21,7 +22,7 @@ int _printf(const char *format, ...)
 		if (format[i] == '%')
 		{
 			formatto = getformat(format, &i);
-			if (formatto == 0)
+			if (formatto.type == 0)
 			{
 				printf("Error\n");
 				exit(98);
@@ -43,13 +44,13 @@ int _printf(const char *format, ...)
 			i++;
 			continue;
 		}
-		operate.f = getfunction(formatto);
+		operate.f = getfunction(formatto.type);
 		if (operate.f == NULL)
 		{
 			printf("Error\n");
 			exit(99);
 		}
-		bytes += operate.f(valist, opt);
+		bytes += operate.f(valist, formatto);
 		i++;
 	}
 	va_end(valist);
