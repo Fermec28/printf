@@ -41,12 +41,12 @@ int _printf(const char *format, ...)
 			continue;
 		}
 		operate.f = getfunction(formatto.type);
-		if (operate.f == NULL)
+		if (operate.f != NULL)
 		{
+			bytes += operate.f(valist, formatto);
 		}
-		bytes += operate.f(valist, formatto);
 		i++;
 	}
 	va_end(valist);
-	return (0);
+	return (bytes);
 }
