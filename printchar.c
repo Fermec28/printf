@@ -7,6 +7,7 @@
 int print_char(va_list valist, options opt)
 {
 	char p = va_arg(valist, int);
+	(void)opt;
 
 	if (p >= 32 &&  p <= 126)
 	{
