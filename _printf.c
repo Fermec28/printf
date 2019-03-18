@@ -10,5 +10,18 @@
 
 int _printf(const char *format, ...)
 {
+	va_list valist;
+	op_t operate;
+	char formatto,
 
+	formatto = getformat(format),
+	va_start(valist, format);
+	operate.f = getfunction(formatto);
+	if (operate.f == NULL)
+	{
+		printf("Error\n");
+		exit(99);
+	}
+	operate.f(va_arg(valist));
+	va_end(valist);
 }
