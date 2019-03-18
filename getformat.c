@@ -13,11 +13,11 @@ options getformat(const char *c, int *pos)
 	int i = *pos;
 	options op;
 
-	for (; c[i]; i++, *pos++)
+	for (; c[i]; i++)
 	{
 		if (c[i] == '%')
 		{
-			*pos = *pos + 1;
+			*pos = i + 1;
 			op.type = c[i + 1];
 			return (op);
 		}
