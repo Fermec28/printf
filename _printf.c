@@ -13,7 +13,7 @@ int _printf(const char *format, ...)
 	va_list valist;
 	op_t operate;
 	char formatto, p;
-	int i = 0;
+	int i = 0, bytes = 0;
 
 	va_start(valist, format);
 	while (format[i] != '\0')
@@ -33,6 +33,7 @@ int _printf(const char *format, ...)
 			if (p >= 32 &&  p <= 126)
 			{
 				write(1, &p, 1);
+				bytes++;
 			}
 			else
 			{
@@ -48,7 +49,7 @@ int _printf(const char *format, ...)
 			printf("Error\n");
 			exit(99);
 		}
-		operate.f(valist);
+		bytes += operate.f(valist, opt);
 		i++;
 	}
 	va_end(valist);

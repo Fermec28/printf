@@ -6,7 +6,7 @@
  *
  * Return: a pointer to the function that corresponds to the operator given
  */
-void (*getfunction(const char format))(va_list)
+int (*getfunction(const char format))(va_list, options)
 {
 	int i_struct = 0;
 	op_t print[] = {
@@ -33,17 +33,6 @@ void (*getfunction(const char format))(va_list)
 }
 
 /**
- * print_integer - print integer
- * @valist: valist
- */
-void print_integer(va_list valist)
-{
-	char *str;
-
-	str = number_to_string(va_arg(valist, int));
-	_putchar(str, str_length(str));
-}
-/**
  * str_length - calculate length
  * @str: strint to calculate length
  * Return: length of array
@@ -56,13 +45,27 @@ unsigned int str_length(char *str)
 		iterator++;
 	return (iterator);
 }
+
+
+/**
+ * print_integer - print integer
+ * @valist: valist
+ */
+int print_integer(va_list valist, options opt)
+{
+	char *str;
+
+	str = number_to_string(va_arg(valist, int));
+	return (_putchar(str, str_length(str)));
+}
+
 /**
  * print_string - print string
  * @valist: valist
  */
-void print_string(va_list valist)
+int print_string(va_list valist, options opt)
 {
 	char *str = va_arg(valist, char*);
 
-	_putchar(str, str_length(str));
+	return (_putchar(str, str_length(str)));
 }
