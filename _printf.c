@@ -12,9 +12,14 @@ int _printf(const char *format, ...)
 {
 	va_list valist;
 	op_t operate;
-	char formatto,
+	char formatto;
 
-	formatto = getformat(format),
+	formatto = getformat(format);
+	if (formatto == 0)
+	{
+		printf("Error\n");
+		exit(98);
+	}
 	va_start(valist, format);
 	operate.f = getfunction(formatto);
 	if (operate.f == NULL)
@@ -22,6 +27,6 @@ int _printf(const char *format, ...)
 		printf("Error\n");
 		exit(99);
 	}
-	operate.f(va_arg(valist));
+	operate.f(valist);
 	va_end(valist);
 }
