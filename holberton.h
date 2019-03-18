@@ -19,7 +19,8 @@ typedef struct options
 	char type;
 	int precision;
 	int length;
-	char sign;
+	int signn;
+	int signp;
 } options;
 
 /**
