@@ -14,7 +14,6 @@ char getformat(const char *c)
 
 	for (; c[i]; i++)
 	{
-		printf("%i",i);
 		if (c[i] == '%')
 			return (c[i + 1]);
 	}
