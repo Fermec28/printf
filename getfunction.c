@@ -66,6 +66,10 @@ int print_string(va_list valist, options opt)
 	char *str = va_arg(valist, char*);
 	(void) opt;
 
+	if(str == NULL)
+	{
+		return(_putchar("(null)", str_length("(null)")));
+	}
 	return (_putchar(str, str_length(str)));
 }
 /**

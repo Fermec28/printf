@@ -18,14 +18,15 @@ int _printf(const char *format, ...)
 	va_start(valist, format);
 	for (; format[i] != '\0'; i++)
 	{
-		if (format[i] == '%')
+		if (format[i] == '%' && format[i + 1] != '\0')
 		{
 			formatto = getformat(format, &i);
 		}
 		else
 		{
-			if ((format[i] >= 32 &&  format[i] <= 126)
+			if (((format[i] >= 32 &&  format[i] <= 126)
 			    || (format[i] >= 7 && format[i] <= 13))
+			    && format[i + 1] != '\0' )
 			{
 				write(1, &format[i], 1);
 				bytes++;
