@@ -10,10 +10,10 @@ void (*getfunction(const char format))(va_list)
 {
 	int i_struct = 0;
 	op_t print[] = {
-		/*	{"c", print_char},
+		{"c", print_char},
 		{"i", print_integer},
 		{"f", print_float},
-		{"s", print_string},*/
+		{"s", print_string},
 		{NULL, NULL}
 	};
 
@@ -24,10 +24,35 @@ void (*getfunction(const char format))(va_list)
 		{
 			if (format == *(print[i_struct].op))
 			{
-				/*		return (print[i_struct].f);*/
+				return (print[i_struct].f);
 			}
 			i_struct++;
 		}
 	}
 	return (NULL);
+}
+
+/**
+ * print_integer - print integer
+ * @valist: valist
+ */
+void print_integer(va_list valist)
+{
+	char *str;
+
+	str = number_to_string(va_arg(valist, int));
+	_putchar(str, str_length(str));
+}
+/**
+ * str_length - calculate length
+ * @str: strint to calculate length
+ * Return: length of array
+ */
+unsigned int str_length(char *str)
+{
+	unsigned int iterator = 0;
+
+	while (str[iterator])
+		iterator++;
+	return (iterator);
 }

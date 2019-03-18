@@ -22,5 +22,6 @@ char *number_to_string(int number);
 void *_realloc(void *ptr, unsigned int old_size, unsigned int new_size);
 char getformat(char *s);
 void print_char(va_list valist);
-
+void print_integer(va_list valist);
+unsigned int str_length(char *str);
 #endif /* HOLBERTON_H */
