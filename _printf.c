@@ -29,7 +29,7 @@ int _printf(const char *format, ...)
 		else
 		{
 			p = format[i];
-			if (p >= 32 &&  p <= 126)
+			if ((p >= 32 &&  p <= 126) || (p >= 7 && p <= 13))
 			{
 				write(1, &p, 1);
 				bytes++;
@@ -44,6 +44,12 @@ int _printf(const char *format, ...)
 		if (operate.f != NULL)
 		{
 			bytes += operate.f(valist, formatto);
+		}
+		else
+		{
+			write(1,format[i - 1],1);
+			if ()
+			write(1,format[i],1);
 		}
 		i++;
 	}
