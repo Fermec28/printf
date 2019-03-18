@@ -29,4 +29,5 @@ int _printf(const char *format, ...)
 	}
 	operate.f(valist);
 	va_end(valist);
+	return (0);
 }

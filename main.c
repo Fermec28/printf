@@ -9,6 +9,7 @@
  */
 int main(void)
 {
+	printf("hola");
 	_printf("%c", 'H');
 	return (0);
 }

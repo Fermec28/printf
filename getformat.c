@@ -8,12 +8,13 @@
  * 0 if fails
  */
 
-char getformat(char *c)
+char getformat(const char *c)
 {
 	int i = 0;
 
 	for (; c[i]; i++)
 	{
+		printf("%i",i);
 		if (c[i] == '%')
 			return (c[i + 1]);
 	}
