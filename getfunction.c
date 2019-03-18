@@ -12,22 +12,19 @@ int (*getfunction(const char format))(va_list, options)
 	op_t print[] = {
 		{"c", print_char},
 		{"i", print_integer},
+		{"d", print_integer},
 		{"f", print_float},
 		{"s", print_string},
 		{NULL, NULL}
 	};
 
-	while (format != '\0')
+	while (print[i_struct].op != NULL)
 	{
-		i_struct = 0;
-		while (print[i_struct].op != NULL)
+		if (format == *(print[i_struct].op))
 		{
-			if (format == *(print[i_struct].op))
-			{
-				return (print[i_struct].f);
-			}
-			i_struct++;
+			return (print[i_struct].f);
 		}
+		i_struct++;
 	}
 	return (NULL);
 }
