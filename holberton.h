@@ -9,12 +9,14 @@
 /**
  * struct options - Struct options
  *
+ * @type: i-integers, f-float, s- string
  * @precision: Pricission of the print
  * @length: Length of the print
  * @sign: Sing in printf
  */
 typedef struct options
 {
+	char type;
 	int precision;
 	int length;
 	char sign;
@@ -37,11 +39,11 @@ int _printf(const char *format, ...);
 void reverse_str(char *str, int size);
 char *number_to_string(int number);
 void *_realloc(void *ptr, unsigned int old_size, unsigned int new_size);
-char getformat(const char *s, int *pos);
+options getformat(const char *s, int *pos);
 int print_char(va_list valist, options opt);
 int print_integer(va_list valist, options opt);
 unsigned int str_length(char *str);
 int print_string(va_list valist, options opt);
 int (*getfunction(const char format))(va_list, options);
-
+int print_float(va_list valist, options opt);
 #endif /* HOLBERTON_H */

@@ -4,21 +4,24 @@
  * getformat - get the char after the %
  * @c: the string
  *
- * Return: the char after the %
+ * Return: Option contain the char after %
  * 0 if fails
  */
 
-char getformat(const char *c, int *pos)
+options getformat(const char *c, int *pos)
 {
 	int i = *pos;
+	options op;
 
 	for (; c[i]; i++, *pos++)
 	{
 		if (c[i] == '%')
 		{
 			*pos = *pos + 1;
-			return (c[i + 1]);
+			op.type = c[i + 1];
+			return (op);
 		}
 	}
-	return (0);
+	op.type = 0;
+	return (op);
 }
