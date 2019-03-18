@@ -12,7 +12,7 @@ int (*getfunction(const char format))(va_list, options)
 	op_t print[] = {
 		{"c", print_char},
 		{"i", print_integer},
-//		{"f", print_float},
+		{"f", print_float},
 		{"s", print_string},
 		{NULL, NULL}
 	};
