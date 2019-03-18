@@ -12,6 +12,5 @@ int main(void)
 	int returned;
 
 	returned = _printf("%");
-	printf("print  \n");
 	return (0);
 }

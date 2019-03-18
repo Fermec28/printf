@@ -18,15 +18,17 @@ int _printf(const char *format, ...)
 	va_start(valist, format);
 	for (; format[i] != '\0'; i++)
 	{
-		if (format[i] == '%' && format[i + 1] != '\0')
+		if (format[i] == '%')
 		{
-			formatto = getformat(format, &i);
+			if (format[i + 1] != '\0')
+				formatto = getformat(format, &i);
+			else
+				break;
 		}
 		else
 		{
 			if (((format[i] >= 32 &&  format[i] <= 126)
-			    || (format[i] >= 7 && format[i] <= 13))
-			    && format[i + 1] != '\0' )
+			    || (format[i] >= 7 && format[i] <= 13)))
 			{
 				write(1, &format[i], 1);
 				bytes++;
@@ -35,9 +37,7 @@ int _printf(const char *format, ...)
 		}
 		operate.f = getfunction(formatto.type);
 		if (operate.f != NULL)
-		{
 			bytes += operate.f(valist, formatto);
-		}
 		else
 		{
 			write(1, &format[i - 1], 1);
