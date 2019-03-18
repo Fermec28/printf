@@ -10,5 +10,6 @@
  */
 int _putchar(char *c, unsigned int lenght)
 {
+	
 	return (write(1, c, lenght));
 }
