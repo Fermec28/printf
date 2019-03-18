@@ -12,22 +12,45 @@ int _printf(const char *format, ...)
 {
 	va_list valist;
 	op_t operate;
-	char formatto;
+	char formatto, p;
+	int i = 0;
 
-	formatto = getformat(format);
-	if (formatto == 0)
-	{
-		printf("Error\n");
-		exit(98);
-	}
 	va_start(valist, format);
-	operate.f = getfunction(formatto);
-	if (operate.f == NULL)
+	while (format[i] != '\0')
 	{
-		printf("Error\n");
-		exit(99);
+		if (format[i] == '%')
+		{
+			formatto = getformat(format, &i);
+			if (formatto == 0)
+			{
+				printf("Error\n");
+				exit(98);
+			}
+		}
+		else
+		{
+			p = format[i];
+			if (p >= 32 &&  p <= 126)
+			{
+				write(1, &p, 1);
+			}
+			else
+			{
+				printf("Error\n");
+				exit(97);
+			}
+			i++;
+			continue;
+		}
+		operate.f = getfunction(formatto);
+		if (operate.f == NULL)
+		{
+			printf("Error\n");
+			exit(99);
+		}
+		operate.f(valist);
+		i++;
 	}
-	operate.f(valist);
 	va_end(valist);
-	return (0);
+		return (0);
 }

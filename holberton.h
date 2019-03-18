@@ -22,7 +22,7 @@ int _printf(const char *format, ...);
 void reverse_str(char *str, int size);
 char *number_to_string(int number);
 void *_realloc(void *ptr, unsigned int old_size, unsigned int new_size);
-char getformat(const char *s);
+char getformat(const char *s, int *pos);
 void print_char(va_list valist);
 void print_integer(va_list valist);
 unsigned int str_length(char *str);
