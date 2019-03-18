@@ -13,10 +13,5 @@ int print_char(va_list valist, options opt)
 	{
 		return (write(1, &p, 1));
 	}
-	else
-	{
-		printf("Error\n");
-		exit(97);
-	}
 	return (0);
 }
