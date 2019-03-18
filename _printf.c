@@ -24,8 +24,6 @@ int _printf(const char *format, ...)
 			formatto = getformat(format, &i);
 			if (formatto.type == 0)
 			{
-				printf("Error\n");
-				exit(98);
 			}
 		}
 		else
@@ -38,8 +36,6 @@ int _printf(const char *format, ...)
 			}
 			else
 			{
-				printf("Error\n");
-				exit(97);
 			}
 			i++;
 			continue;
@@ -47,12 +43,10 @@ int _printf(const char *format, ...)
 		operate.f = getfunction(formatto.type);
 		if (operate.f == NULL)
 		{
-			printf("Error\n");
-			exit(99);
 		}
 		bytes += operate.f(valist, formatto);
 		i++;
 	}
 	va_end(valist);
-		return (0);
+	return (0);
 }
