@@ -8,14 +8,17 @@
  * 0 if fails
  */
 
-char getformat(const char *c)
+char getformat(const char *c, int *pos)
 {
-	int i = 0;
+	int i = *pos;
 
-	for (; c[i]; i++)
+	for (; c[i]; i++, *pos++)
 	{
 		if (c[i] == '%')
+		{
+			*pos = *pos + 1;
 			return (c[i + 1]);
+		}
 	}
 	return (0);
 }
