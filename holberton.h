@@ -17,16 +17,30 @@ typedef struct op
 	char *op;
 	void (*f)(va_list valist);
 } op_t;
+
+/**
+ * struct options - Struct options
+ *
+ * @precision: Pricission of the print
+ * @length: Length of the print
+ * @sign: Sing in printf
+ */
+typedef struct options
+{
+	int precision;
+	int length;
+	char sign;
+} options;
 int _putchar(char *c, unsigned int lenght);
 int _printf(const char *format, ...);
 void reverse_str(char *str, int size);
 char *number_to_string(int number);
 void *_realloc(void *ptr, unsigned int old_size, unsigned int new_size);
 char getformat(const char *s, int *pos);
-void print_char(va_list valist);
-void print_integer(va_list valist);
+void print_char(va_list valist, options opt);
+void print_integer(va_list valist, options opt);
 unsigned int str_length(char *str);
-void print_string(va_list valist);
+void print_string(va_list valist, options opt);
 void (*getfunction(const char format))(va_list);
 
 #endif /* HOLBERTON_H */
