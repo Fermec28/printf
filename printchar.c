@@ -6,5 +6,6 @@
  */
 void print_char(va_list valist)
 {
-	_putchar(va_arg(valist, int),1);
+	char *p = va_arg(valist, char *);
+	_putchar(p,1);
 }

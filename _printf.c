@@ -27,6 +27,7 @@ int _printf(const char *format, ...)
 		printf("Error\n");
 		exit(99);
 	}
-	operate.f(valist);
-	va_end(valist);
+/*	operate.f(valist);
+	va_end(valist);*/
+	return (0);
 }
