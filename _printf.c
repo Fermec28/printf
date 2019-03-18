@@ -13,31 +13,23 @@ int _printf(const char *format, ...)
 	va_list valist;
 	op_t operate;
 	options formatto;
-	char p;
 	int i = 0, bytes = 0;
 
 	va_start(valist, format);
-	while (format[i] != '\0')
+	for (; format[i] != '\0'; i++)
 	{
 		if (format[i] == '%')
 		{
 			formatto = getformat(format, &i);
-			if (formatto.type == 0)
-			{
-			}
 		}
 		else
 		{
-			p = format[i];
-			if ((p >= 32 &&  p <= 126) || (p >= 7 && p <= 13))
+			if ((format[i] >= 32 &&  format[i] <= 126)
+			    || (format[i] >= 7 && format[i] <= 13))
 			{
-				write(1, &p, 1);
+				write(1, &format[i], 1);
 				bytes++;
 			}
-			else
-			{
-			}
-			i++;
 			continue;
 		}
 		operate.f = getfunction(formatto.type);
@@ -47,11 +39,14 @@ int _printf(const char *format, ...)
 		}
 		else
 		{
-			write(1,format[i - 1],1);
-			if ()
-			write(1,format[i],1);
+			write(1, &format[i - 1], 1);
+			bytes++;
+			if (format[i] != '%')
+			{
+				write(1, &format[i], 1);
+				bytes++;
+			}
 		}
-		i++;
 	}
 	va_end(valist);
 	return (bytes);
