@@ -1,0 +1,10 @@
+#! /bin/bash
+echo "----------Empezando Test-------"
+for i in $(find test -name "*main.c"); do # Not recommended, will break on whitespace
+    echo ""
+    echo " Generando executable for test $i"
+    gcc *.c $i
+    echo "-------"
+    ./a.out
+done
+rm a.out
