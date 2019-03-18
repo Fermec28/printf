@@ -10,14 +10,18 @@ void reverse_str(char *str, int size)
 	int iterator;
 	char aux;
 
-	length = size % 2 == 0 ? size / 2 : ((size / 2) + 1);
-	for  (iterator = 0; iterator < length; iterator++)
+	if (*str == '-')
+		reverse_str(str + 1, size - 1);
+	else
 	{
-		aux = str[iterator];
-		str[iterator] = str[size - iterator - 1];
-		str[size - iterator - 1] = aux;
+		length = size % 2 == 0 ? size / 2 : ((size / 2) + 1);
+		for  (iterator = 0; iterator < length; iterator++)
+		{
+			aux = str[iterator];
+			str[iterator] = str[size - iterator - 1];
+			str[size - iterator - 1] = aux;
+		}
 	}
-
 }
 
 /**
@@ -30,18 +34,31 @@ void reverse_str(char *str, int size)
 char *number_to_string(int number)
 {
 	int lengh = 0;
+	int aux;
 	char *p = malloc(1);
 
-	if(p == NULL)
+	if (p == NULL)
 		return (NULL);
-	do
-	{
-		p[lengh] = (number % 10) + '0';
+	do {
+		if (number < 0)
+		{
+			p[0] = '-';
+			lengh++;
+			p = _realloc(p, lengh, lengh + 1);
+			aux = number % 10;
+			p[lengh] = (-aux) + '0';
+			aux = number / 10;
+			number = -aux;
+		}
+		else
+		{
+			p[lengh] = (number % 10) + '0';
+			number /= 10;
+		}
 		lengh++;
 		p = _realloc(p, lengh, lengh + 1);
 		p[lengh] = '\0';
-		number /= 10;
-	} while(number);
+	} while (number);
 	reverse_str(p, lengh);
 	return (p);
 }
