@@ -1,0 +1,38 @@
+.TH man 3 "19 March 2019" "1.0" "_printf man page"
+.SH NAME
+.B _printf
+- formatted output conversion
+.SH SYNOPSIS
+int printf(const char *format, ...);
+.SH DESCRIPTION
+The function produce output according to a format as described below, the output is written to stdout, the standard output stream.
+.SH FORMAT
+.TP
+%i
+ integer number
+.TP
+%f
+ float number
+.TP
+%c
+ character
+.TP
+%s
+ string
+.SH SEE ALSO
+.I printf(3)
+.SH BUGS
+.TP
+Error 96
+ double flag '+' or '-'
+.TP
+Error 97
+ No proper character after '%'
+.TP
+Error 98
+ No '%'
+.TP
+Error 99
+ wrong format
+.SH AUTHOR
+Ferney Medina, Jaiber Ramirez

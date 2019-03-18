@@ -21,6 +21,8 @@ typedef struct options
 	int length;
 	int signn;
 	int signp;
+	int zeros;
+	int spc;
 } options;
 
 /**

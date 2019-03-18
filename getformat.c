@@ -17,29 +17,29 @@ options getformat(const char *c, int *pos)
 	op.signn = 0;
 	for (; c[i]; i++)
 	{
-		if (c[i + 1] >= '0' && c[i + 1] <= '9')
+		if (c[i + 1] > '0' && c[i + 1] <= '9')
 		{
 			op.precision =  op.precision + c[i + 1] - 48;
 			continue;
 		}
 		if (c[i + 1] == '-')
 		{
-			if (op.signn == 1)
-			{
-				printf("Error\n");
-				exit(96);
-			}
 			op.signn = 1;
 			continue;
 		}
 		if (c[i + 1] == '+')
 		{
-			if (op.signp == 1)
-			{
-				printf("Error\n");
-				exit(96);
-			}
 			op.signp = 1;
+			continue;
+		}
+		if (c[i + 1] == ' ')
+		{
+			op.spc = 1;
+			continue;
+		}
+		if (c[i + 1] == '0')
+		{
+			op.zeros = 1;
 			continue;
 		}
 		*pos = i + 1;
