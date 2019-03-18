@@ -26,6 +26,7 @@ char getformat(const char *s);
 void print_char(va_list valist);
 void print_integer(va_list valist);
 unsigned int str_length(char *str);
+void print_string(va_list valist);
 void (*getfunction(const char format))(va_list);
 
 #endif /* HOLBERTON_H */

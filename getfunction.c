@@ -12,7 +12,7 @@ void (*getfunction(const char format))(va_list)
 	op_t print[] = {
 		{"c", print_char},
 		{"i", print_integer},
-		{"f", print_float},
+//		{"f", print_float},
 		{"s", print_string},
 		{NULL, NULL}
 	};
@@ -55,4 +55,14 @@ unsigned int str_length(char *str)
 	while (str[iterator])
 		iterator++;
 	return (iterator);
+}
+/**
+ * print_string - print string
+ * @valist: valist
+ */
+void print_string(va_list valist)
+{
+	char *str = va_arg(valist, char*);
+
+	_putchar(str, str_length(str));
 }
