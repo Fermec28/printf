@@ -56,6 +56,10 @@ int print_integer(va_list valist, options opt)
 	(void) opt;
 
 	str = number_to_string(va_arg(valist, int));
+	if (str == NULL)
+	{
+		return (_putchar("(null)", str_length("(null)")));
+	}
 	return (_putchar(str, str_length(str)));
 }
 
