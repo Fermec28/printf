@@ -3,6 +3,8 @@
 /**
  * print_char - print character
  * @valist: character to be printed
+ * @opt: option to be printer
+ * Return: num of bytes printed
  */
 int print_char(va_list valist, options opt)
 {
