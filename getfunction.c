@@ -54,9 +54,16 @@ int print_integer(va_list valist, options opt)
 {
 	char *str;
 	(void) opt;
+	int bytes = 0;
 
 	str = number_to_string(va_arg(valist, int));
-	return (_putchar(str, str_length(str)));
+	if (str == NULL)
+	{
+		return (_putchar("(null)", str_length("(null)")));
+	}
+	bytes = _putchar(str, str_length(str));
+	free(str);
+	return (bytes);
 }
 
 /**

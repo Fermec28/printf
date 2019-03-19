@@ -57,6 +57,8 @@ char *number_to_string(int number)
 		}
 		lengh++;
 		p = _realloc(p, lengh, lengh + 1);
+		if (p == NULL)
+			return (NULL);
 		p[lengh] = '\0';
 	} while (number);
 	reverse_str(p, lengh);
