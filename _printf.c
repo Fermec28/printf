@@ -16,7 +16,7 @@ int _printf(const char *format, ...)
 	int i = 0, bytes = 0;
 
 	va_start(valist, format);
-	for (; format[i] != '\0'; i++)
+	for (;  format != NULL && format[i] != '\0'; i++)
 	{
 		if (format[i] == '%')
 		{
