@@ -47,6 +47,8 @@ unsigned int str_length(char *str)
 /**
  * print_integer - print integer
  * @valist: valist
+ * @opt: option to print
+ * Return: count of bytes printed
  */
 int print_integer(va_list valist, options opt)
 {
@@ -60,21 +62,25 @@ int print_integer(va_list valist, options opt)
 /**
  * print_string - print string
  * @valist: valist
+ * @opt: option to print
+* Return: count of bytes printed
  */
 int print_string(va_list valist, options opt)
 {
 	char *str = va_arg(valist, char*);
 	(void) opt;
 
-	if(str == NULL)
+	if (str == NULL)
 	{
-		return(_putchar("(null)", str_length("(null)")));
+		return (_putchar("(null)", str_length("(null)")));
 	}
 	return (_putchar(str, str_length(str)));
 }
 /**
- * print_string - print string
+ * print_float - print float
  * @valist: valist
+ * @opt: option to print
+ * Return: count of bytes printed
  */
 int print_float(va_list valist, options opt)
 {

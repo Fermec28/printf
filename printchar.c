@@ -13,5 +13,5 @@ int print_char(va_list valist, options opt)
 	{
 		return (write(1, &p, 1));
 	}
- 	return (0);
+	return (0);
 }
