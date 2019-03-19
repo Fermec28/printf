@@ -53,8 +53,8 @@ unsigned int str_length(char *str)
 int print_integer(va_list valist, options opt)
 {
 	char *str;
-	(void) opt;
 	int bytes = 0;
+	(void) opt;
 
 	str = number_to_string(va_arg(valist, int));
 	if (str == NULL)
