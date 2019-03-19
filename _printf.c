@@ -23,7 +23,7 @@ int _printf(const char *format, ...)
 			if (format[i + 1] != '\0')
 				formatto = getformat(format, &i);
 			else
-				break;
+				return (-1);
 		}
 		else
 		{
@@ -40,15 +40,13 @@ int _printf(const char *format, ...)
 			bytes += operate.f(valist, formatto);
 		else
 		{
-			write(1, &format[i - 1], 1);
-			bytes++;
+			bytes += write(1, &format[i - 1], 1);
 			if (format[i] != '%')
-			{
-				write(1, &format[i], 1);
-				bytes++;
-			}
+				bytes += write(1, &format[i], 1);
 		}
 	}
+	if (format == NULL)
+		return (-1);
 	va_end(valist);
 	return (bytes);
 }

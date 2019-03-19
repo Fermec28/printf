@@ -11,7 +11,7 @@ int main(void)
 {
 	int returned;
 
-	returned = _printf("Yo %s Tu\n", "jaiber");
+	returned = _printf("Yo %s Tu\n", (char *) 0);
 	printf("Yo %s Tu\n", (char *) 0);
 	return (0);
 }
