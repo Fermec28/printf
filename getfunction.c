@@ -54,9 +54,15 @@ unsigned int str_length(char *str)
 int print_integer(va_list valist, options opt)
 {
 	char *str;
-	(void) opt;
+	char flag;
 
 	str = number_to_string(va_arg(valist, int));
+	if (opt.signp == 1)
+	{
+		flag = '+';
+		write(1,&flag,1);
+		return (_putchar(str, str_length(str)) + 1);
+	}
 	return (_putchar(str, str_length(str)));
 }
 

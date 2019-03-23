@@ -14,7 +14,6 @@ options getformat(const char *c, int *pos)
 	options op;
 
 	op.precision = 0;
-	op.signn = 0;
 	for (; c[i]; i++)
 	{
 		if (c[i + 1] > '0' && c[i + 1] <= '9')
@@ -40,6 +39,16 @@ options getformat(const char *c, int *pos)
 		if (c[i + 1] == '0')
 		{
 			op.zeros = 1;
+			continue;
+		}
+		if (c[i + 1] == '#')
+		{
+			op.hash = 1;
+			continue;
+		}
+		if (c[i + 1] == '.')
+		{
+			op.point = 1;
 			continue;
 		}
 		*pos = i + 1;
