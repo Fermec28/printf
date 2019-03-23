@@ -67,7 +67,7 @@ int print_integer(va_list valist, options opt)
 		write(1,&flag,1);
 		bytes++;
 	}
-	bytes = _putchar(str, str_length(str));
+	bytes += _putchar(str, str_length(str));
 	free(str);
 	return (bytes);
 }
