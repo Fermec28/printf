@@ -38,7 +38,7 @@ char *number_to_string(int number , char base)
 	int aux;
 	char sign;
 	char *p = malloc(1);
-	char numbers[] = "0123456789ABCD";
+	char numbers[] = "0123456789ABCDEF";
 
 	sign = number < 0;
 	if (p == NULL || base > 16)
