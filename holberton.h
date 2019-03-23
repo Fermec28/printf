@@ -40,8 +40,8 @@ typedef struct options
  */
 typedef struct op
 {
-        char *op;
-        int (*f)(va_list valist, options opt);
+	char *op;
+	int (*f)(va_list valist, options opt);
 } op_t;
 
 int _putchar(char *c, unsigned int lenght);

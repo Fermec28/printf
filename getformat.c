@@ -3,6 +3,7 @@
 /**
  * getformat - get the char after the %
  * @c: the string
+ * @pos: position of format
  *
  * Return: Option contain the char after %
  * 0 if fails

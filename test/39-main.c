@@ -9,8 +9,9 @@
  */
 int main(void)
 {
-	int r;
-	r = _printf("%c", '\0');
-	printf("%i", r);
+	int returned;
+
+	returned = _printf("Yo %s Tu\n", (char *) 0);
+	printf("Yo %s Tu\n", (char *) 0);
 	return (0);
 }

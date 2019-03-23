@@ -13,46 +13,40 @@ int _printf(const char *format, ...)
 	va_list valist;
 	op_t operate;
 	options formatto;
-	char p;
 	int i = 0, bytes = 0;
 
 	va_start(valist, format);
-	while (format[i] != '\0')
+	for (;  format != NULL && format[i] != '\0'; i++)
 	{
 		if (format[i] == '%')
 		{
-			formatto = getformat(format, &i);
-			if (formatto.type == 0)
-			{
-				printf("Error\n");
-				exit(98);
-			}
+			if (format[i + 1] != '\0')
+				formatto = getformat(format, &i);
+			else
+				return (-1);
 		}
 		else
 		{
-			p = format[i];
-			if (p >= 32 &&  p <= 126)
+			if (((format[i] >= 32 &&  format[i] <= 126)
+			    || (format[i] >= 7 && format[i] <= 13)))
 			{
-				write(1, &p, 1);
+				write(1, &format[i], 1);
 				bytes++;
 			}
-			else
-			{
-				printf("Error\n");
-				exit(97);
-			}
-			i++;
 			continue;
 		}
 		operate.f = getfunction(formatto.type);
-		if (operate.f == NULL)
+		if (operate.f != NULL)
+			bytes += operate.f(valist, formatto);
+		else
 		{
-			printf("Error\n");
-			exit(99);
+			bytes += write(1, &format[i - 1], 1);
+			if (format[i] != '%')
+				bytes += write(1, &format[i], 1);
 		}
-		bytes += operate.f(valist, formatto);
-		i++;
 	}
+	if (format == NULL)
+		return (-1);
 	va_end(valist);
-		return (0);
+	return (bytes);
 }

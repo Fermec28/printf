@@ -12,22 +12,19 @@ int (*getfunction(const char format))(va_list, options)
 	op_t print[] = {
 		{"c", print_char},
 		{"i", print_integer},
-//		{"f", print_float},
+		{"d", print_integer},
+		{"f", print_float},
 		{"s", print_string},
 		{NULL, NULL}
 	};
 
-	while (format != '\0')
+	while (print[i_struct].op != NULL)
 	{
-		i_struct = 0;
-		while (print[i_struct].op != NULL)
+		if (format == *(print[i_struct].op))
 		{
-			if (format == *(print[i_struct].op))
-			{
-				return (print[i_struct].f);
-			}
-			i_struct++;
+			return (print[i_struct].f);
 		}
+		i_struct++;
 	}
 	return (NULL);
 }
@@ -50,36 +47,53 @@ unsigned int str_length(char *str)
 /**
  * print_integer - print integer
  * @valist: valist
+ * @opt: option to print
+ * Return: count of bytes printed
  */
 int print_integer(va_list valist, options opt)
 {
 	char *str;
 	char flag;
+	int bytes = 0;
 
 	str = number_to_string(va_arg(valist, int));
+	if (str == NULL)
+	{
+		return (_putchar("(null)", str_length("(null)")));
+	}
 	if (opt.signp == 1)
 	{
 		flag = '+';
 		write(1,&flag,1);
-		return (_putchar(str, str_length(str)) + 1);
+		bytes++;
 	}
-	return (_putchar(str, str_length(str)));
+	bytes = _putchar(str, str_length(str));
+	free(str);
+	return (bytes);
 }
 
 /**
  * print_string - print string
  * @valist: valist
+ * @opt: option to print
+* Return: count of bytes printed
  */
 int print_string(va_list valist, options opt)
 {
 	char *str = va_arg(valist, char*);
 	(void) opt;
 
+	if (str == NULL)
+	{
+		return (_putchar("(null)", str_length("(null)")));
+	}
 	return (_putchar(str, str_length(str)));
 }
 /**
- * print_string - print string
+ * print_float - print float
  * @valist: valist
+ * @opt: option to print
+ * Return: count of bytes printed
  */
 int print_float(va_list valist, options opt)
 {
