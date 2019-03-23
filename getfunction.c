@@ -56,7 +56,7 @@ int print_integer(va_list valist, options opt)
 	int bytes = 0;
 	(void) opt;
 
-	str = number_to_string(va_arg(valist, int));
+	str = number_to_string(va_arg(valist, int), 10);
 	if (str == NULL)
 	{
 		return (_putchar("(null)", str_length("(null)")));

@@ -36,8 +36,8 @@ typedef struct op
 
 int _putchar(char *c, unsigned int lenght);
 int _printf(const char *format, ...);
-void reverse_str(char *str, int size);
-char *number_to_string(int number);
+void reverse_str(char *str, int size, char keep_first);
+char *number_to_string(int number , char base);
 void *_realloc(void *ptr, unsigned int old_size, unsigned int new_size);
 options getformat(const char *s, int *pos);
 int print_char(va_list valist, options opt);

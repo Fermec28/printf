@@ -3,15 +3,16 @@
  * reverse_str - reverse string
  * @str: string to reverse
  * @size: size of string
+ * @keep_first: Keep first element in str like first
  */
-void reverse_str(char *str, int size)
+void reverse_str(char *str, int size, char keep_first)
 {
 	int length;
 	int iterator;
 	char aux;
 
-	if (*str == '-')
-		reverse_str(str + 1, size - 1);
+	if (keep_first)
+		reverse_str(str + 1, size - 1, 0);
 	else
 	{
 		length = size % 2 == 0 ? size / 2 : ((size / 2) + 1);
@@ -31,29 +32,39 @@ void reverse_str(char *str, int size)
  *
  * Return: string converted
  */
-char *number_to_string(int number)
+char *number_to_string(int number , char base)
 {
 	int lengh = 0;
 	int aux;
+	char sign;
 	char *p = malloc(1);
+	char numbers[] = "0123456789ABCD";
 
-	if (p == NULL)
+	sign = number < 0;
+	if (p == NULL || base > 16)
 		return (NULL);
 	do {
 		if (number < 0)
 		{
-			p[0] = '-';
+			if (base == 2)
+			{
+				p[0] = '1';
+			}
+			else
+			{
+				p[0] = '-';
+			}
 			lengh++;
 			p = _realloc(p, lengh, lengh + 1);
-			aux = number % 10;
-			p[lengh] = (-aux) + '0';
-			aux = number / 10;
+			aux = number % base;
+			p[lengh] = numbers[-aux];
+			aux = number / base;
 			number = -aux;
 		}
 		else
 		{
-			p[lengh] = (number % 10) + '0';
-			number /= 10;
+			p[lengh] = numbers[number % base];
+			number /= base;
 		}
 		lengh++;
 		p = _realloc(p, lengh, lengh + 1);
@@ -61,7 +72,7 @@ char *number_to_string(int number)
 			return (NULL);
 		p[lengh] = '\0';
 	} while (number);
-	reverse_str(p, lengh);
+	reverse_str(p, lengh, sign);
 	return (p);
 }
 /**
