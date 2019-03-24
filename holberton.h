@@ -46,4 +46,9 @@ unsigned int str_length(char *str);
 int print_string(va_list valist, options opt);
 int (*getfunction(const char format))(va_list, options);
 int print_float(va_list valist, options opt);
+char *unsigned_number_to_string(unsigned int number , char base);
+int print_hexa_lower_case(va_list valist, options opt);
+int print_hexa_upper_case(va_list valist, options opt);
+int print_octal(va_list valist, options opt);
+int print_unsigned_integer (va_list valist, options opt);
 #endif /* HOLBERTON_H */

@@ -7,8 +7,7 @@
  */
 void reverse_str(char *str, int size, char keep_first)
 {
-	int length;
-	int iterator;
+	int length, iterator;
 	char aux;
 
 	if (keep_first)
@@ -29,42 +28,42 @@ void reverse_str(char *str, int size, char keep_first)
  * number_to_string - convert number to string
  * you should free the pointer returned
  * @number: number to be printed
- *
+ * @base: base to be converted  if want in hexa wit capital letters
  * Return: string converted
  */
-char *number_to_string(int number , char base)
+char *number_to_string(int number, char base)
 {
-	int lengh = 0;
-	int aux;
-	char sign;
-	char *p = malloc(1);
-	char numbers[] = "0123456789ABCDEF";
+	int lengh = 0, aux;
+	char sign, numbers[] = "0123456789abcdef", *p = malloc(1);
 
 	sign = number < 0;
-	if (p == NULL || base > 16)
+	if (p == NULL || base > 17)
 		return (NULL);
 	do {
 		if (number < 0)
 		{
-			if (base == 2)
-			{
-				p[0] = '1';
-			}
-			else
-			{
-				p[0] = '-';
-			}
+			p[0] = base == 2 ? '1' : '-';
 			lengh++;
 			p = _realloc(p, lengh, lengh + 1);
-			aux = number % base;
+			aux = base == 17 ? number % (base - 1) : number % base;
 			p[lengh] = numbers[-aux];
-			aux = number / base;
+			if (base == 17 && -aux > 9)
+				p[lengh] = p[lengh] - 'a' + 'A';
+			aux = base == 17 ?  number / (base - 1) : number / base;
 			number = -aux;
 		}
 		else
 		{
-			p[lengh] = numbers[number % base];
-			number /= base;
+			if (base == 17)
+			{
+				p[lengh] = numbers[number % (base - 1)] - 'a' + 'A';
+				number /=  (base - 1);
+			}
+			else
+			{
+				p[lengh] = numbers[number % base];
+				number /=  base;
+			}
 		}
 		lengh++;
 		p = _realloc(p, lengh, lengh + 1);
@@ -75,6 +74,38 @@ char *number_to_string(int number , char base)
 	reverse_str(p, lengh, sign);
 	return (p);
 }
+/**
+ * unsigned_number_to_string - convert number to string
+ * you should free the pointer returned
+ * @number: number to be printed
+ * @base: base to be converted
+ * Return: string converted
+ */
+char *unsigned_number_to_string(unsigned int number, char base)
+{
+	int lengh = 0;
+	char aux;
+	char *p = malloc(1);
+	char numbers[] = "0123456789abcdef";
+
+	if (p == NULL || base > 17)
+		return (NULL);
+	do {
+		aux = base == 17 ? 16 : base;
+		p[lengh] = numbers[number % aux];
+		if (base == 17 && (number % aux) > 9)
+			p[lengh] = p[lengh] - 'a' + 'A';
+		number /= aux;
+		lengh++;
+		p = _realloc(p, lengh, lengh + 1);
+		if (p == NULL)
+			return (NULL);
+		p[lengh] = '\0';
+	} while (number);
+	reverse_str(p, lengh, 0);
+	return (p);
+}
+
 /**
  * _realloc -  reallocates a memory block
  * @ptr: is a pointer to the memory previously allocated
