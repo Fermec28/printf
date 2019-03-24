@@ -20,6 +20,7 @@ int (*getfunction(const char format))(va_list, options)
 		{"o", print_octal},
 		{"u", print_unsigned_integer},
 		{"r", print_reverse_string},
+		{"R", print_rot13},
 		{NULL, NULL}
 	};
 
