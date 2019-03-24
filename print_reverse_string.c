@@ -16,7 +16,7 @@ int print_reverse_string(va_list valist, options opt)
 	{
 		return (_putchar("(null)", str_length("(null)")));
 	}
-	aux = malloc(3 * sizeof(char));
+	aux = malloc((str_length(str) + 1) * sizeof(char));
 	if (aux == NULL)
 		return (_putchar("(null)", str_length("(null)")));
 	for (length = 0; str[length]; length++)
