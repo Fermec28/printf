@@ -61,11 +61,13 @@ int print_integer(va_list valist, options opt)
 	{
 		return (_putchar("(null)", str_length("(null)")));
 	}
-	if (opt.signp == 1)
+	if(str[0] != '-' && (opt.signp == 1 || opt.spc == 1))
 	{
-		flag = '+';
-		write(1,&flag,1);
-		bytes++;
+		if (opt.signp == 1)
+			flag = '+';
+		if (opt.spc == 1)
+			flag = ' ';
+		bytes += write(1,&flag,1);
 	}
 	bytes += _putchar(str, str_length(str));
 	free(str);
