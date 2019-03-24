@@ -54,22 +54,33 @@ int print_integer(va_list valist, options opt)
 {
 	char *str;
 	char flag;
-	int bytes = 0;
+	int bytes = 0, compare, len, i = 0;
 
 	str = number_to_string(va_arg(valist, int));
+	len = str_length(str);
 	if (str == NULL)
-	{
 		return (_putchar("(null)", str_length("(null)")));
-	}
 	if(str[0] != '-' && (opt.signp == 1 || opt.spc == 1))
+        {
+                if (opt.signp == 1)
+                        flag = '+';
+                if (opt.spc == 1)
+                        flag = ' ';
+		opt.precision -= 1;
+                bytes += write(1,&flag,1);
+        }
+	if (len < opt.precision)
 	{
-		if (opt.signp == 1)
-			flag = '+';
-		if (opt.spc == 1)
-			flag = ' ';
-		bytes += write(1,&flag,1);
+		compare = opt.precision - len;
+		str = _realloc(str, len, len + compare);
+		if (opt.zeros == 1)
+		{
+			for (; i < opt.precision; i++)
+				str[i] = '0';
+		}
+		len = str_length(str);
 	}
-	bytes += _putchar(str, str_length(str));
+	bytes += _putchar(str, len);
 	free(str);
 	return (bytes);
 }
