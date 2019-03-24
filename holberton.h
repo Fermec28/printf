@@ -30,6 +30,8 @@ typedef struct options
 	int spc;
 	int hash;
 	int point;
+	int longer;
+	int sh;
 } options;
 
 /**

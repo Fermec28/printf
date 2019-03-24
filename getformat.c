@@ -31,9 +31,14 @@ options getformat(const char *c, int *pos)
 			op.hash = 1;
 		if (c[i + 1] == '.')
 			op.point = 1;
+		if (c[i + 1] == 'l')
+			op.longer = 1;
+		if (c[i + 1] == 'h')
+			op.sh = 1;
 		if ((c[i + 1] > '0' && c[i + 1] <= '9') || c[i + 1] == '-'
 		    || c[i + 1] == '+' || c[i + 1] == ' ' || c[i + 1] == '0'
-		    || c[i + 1] == '#' || c[i + 1] == '.')
+		    || c[i + 1] == '#' || c[i + 1] == '.' || c[i + 1] == 'l'
+		    || c[i + 1] == 'h')
 			continue;
 		*pos = i + 1;
 		op.type = c[i + 1];
