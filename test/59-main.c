@@ -9,8 +9,6 @@
  */
 int main(void)
 {
-
-	 _printf("Yo %s Tu\n", (char *) 0);
-	printf("Yo %s Tu\n", (char *) 0);
+	_printf("Holberton al reves es: %r\n", "Holberton");
 	return (0);
 }

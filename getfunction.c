@@ -19,6 +19,7 @@ int (*getfunction(const char format))(va_list, options)
 		{"X", print_hexa_upper_case},
 		{"o", print_octal},
 		{"u", print_unsigned_integer},
+		{"r", print_reverse_string},
 		{NULL, NULL}
 	};
 
@@ -101,7 +102,7 @@ int print_float(va_list valist, options opt)
 	return (_putchar(str, str_length(str)));
 }
 /**
- * print_string - print string
+ * print_unsigned_integer - print unsigned integer
  * @valist: valist
  * @opt: option to print
 * Return: count of bytes printed
