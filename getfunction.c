@@ -15,6 +15,10 @@ int (*getfunction(const char format))(va_list, options)
 		{"d", print_integer},
 		{"f", print_float},
 		{"s", print_string},
+		{"x", print_hexa_lower_case},
+		{"X", print_hexa_upper_case},
+		{"o", print_octal},
+		{"u", print_unsigned_integer},
 		{NULL, NULL}
 	};
 
@@ -56,7 +60,7 @@ int print_integer(va_list valist, options opt)
 	int bytes = 0;
 	(void) opt;
 
-	str = number_to_string(va_arg(valist, int));
+	str = number_to_string(va_arg(valist, int), 10);
 	if (str == NULL)
 	{
 		return (_putchar("(null)", str_length("(null)")));
@@ -95,4 +99,26 @@ int print_float(va_list valist, options opt)
 	(void) opt;
 
 	return (_putchar(str, str_length(str)));
+}
+/**
+ * print_string - print string
+ * @valist: valist
+ * @opt: option to print
+* Return: count of bytes printed
+ */
+int print_unsigned_integer(va_list valist, options opt)
+{
+	char *str;
+	int bytes = 0;
+	(void) opt;
+
+	str = unsigned_number_to_string(va_arg(valist, unsigned int), 10);
+	if (str == NULL)
+	{
+		return (_putchar("(null)", str_length("(null)")));
+	}
+	bytes = _putchar(str, str_length(str));
+	free(str);
+	return (bytes);
+
 }
