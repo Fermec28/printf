@@ -52,4 +52,5 @@ int print_hexa_upper_case(va_list valist, options opt);
 int print_octal(va_list valist, options opt);
 int print_unsigned_integer(va_list valist, options opt);
 int print_reverse_string(va_list valist, options opt);
+int print_rot13(va_list valist, options opt);
 #endif /* HOLBERTON_H */
