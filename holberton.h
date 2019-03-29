@@ -48,8 +48,8 @@ typedef struct op
 
 int _putchar(char *c, unsigned int lenght);
 int _printf(const char *format, ...);
-void reverse_str(char *str, int size);
-char *number_to_string(int number);
+void reverse_str(char *str, int size, char keep_first);
+char *number_to_string(int number, char base);
 void *_realloc(void *ptr, unsigned int old_size, unsigned int new_size);
 options getformat(const char *s, int *pos);
 int print_char(va_list valist, options opt);
@@ -58,4 +58,11 @@ unsigned int str_length(char *str);
 int print_string(va_list valist, options opt);
 int (*getfunction(const char format))(va_list, options);
 int print_float(va_list valist, options opt);
+char *unsigned_number_to_string(unsigned int number, char base);
+int print_hexa_lower_case(va_list valist, options opt);
+int print_hexa_upper_case(va_list valist, options opt);
+int print_octal(va_list valist, options opt);
+int print_unsigned_integer(va_list valist, options opt);
+int print_reverse_string(va_list valist, options opt);
+int print_rot13(va_list valist, options opt);
 #endif /* HOLBERTON_H */

@@ -9,8 +9,7 @@
  */
 int main(void)
 {
-	int returned;
 
-	returned = _printf("%");
+	 _printf("%");
 	return (0);
 }

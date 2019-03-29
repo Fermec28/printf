@@ -9,8 +9,6 @@
  */
 int main(void)
 {
-
-	 _printf("Yo %s Tu\n", (char *) 0);
-	printf("Yo %s Tu\n", (char *) 0);
+	_printf("Hola como root13 debe ser Ubyn y  es: %R\n", "Hola");
 	return (0);
 }

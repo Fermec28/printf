@@ -15,6 +15,12 @@ int (*getfunction(const char format))(va_list, options)
 		{"d", print_integer},
 		{"f", print_float},
 		{"s", print_string},
+		{"x", print_hexa_lower_case},
+		{"X", print_hexa_upper_case},
+		{"o", print_octal},
+		{"u", print_unsigned_integer},
+		{"r", print_reverse_string},
+		{"R", print_rot13},
 		{NULL, NULL}
 	};
 
@@ -56,29 +62,31 @@ int print_integer(va_list valist, options opt)
 	char flag;
 	int bytes = 0, compare, len, i = 0;
 
-	str = number_to_string(va_arg(valist, int));
+	str = number_to_string(va_arg(valist, int), 10);
 	len = str_length(str);
 	if (str == NULL)
 		return (_putchar("(null)", str_length("(null)")));
-	if(str[0] != '-' && (opt.signp == 1 || opt.spc == 1))
-        {
-                if (opt.signp == 1)
-                        flag = '+';
-                if (opt.spc == 1)
-                        flag = ' ';
+	if (str[0] != '-' && (opt.signp == 1 || opt.spc == 1))
+	{
+		if (opt.signp == 1)
+			flag = '+';
+		if (opt.spc == 1)
+			flag = ' ';
 		opt.precision -= 1;
-                bytes += write(1,&flag,1);
-        }
+		bytes += write(1, &flag, 1);
+	}
 	if (len < opt.precision)
 	{
-		compare = opt.precision - len;
-		str = _realloc(str, len, len + compare);
+/*		compare = opt.precision - len;*/
+/*		str = _realloc(str, len, len + compare);*/
+		i = len;
 		if (opt.zeros == 1)
 		{
 			for (; i < opt.precision; i++)
-				str[i] = '0';
+				bytes += write(1, "0", 1);
+/*				str[i] = '0';*/
 		}
-		len = str_length(str);
+/*		len = str_length(str);*/
 	}
 	bytes += _putchar(str, len);
 	free(str);
@@ -114,4 +122,26 @@ int print_float(va_list valist, options opt)
 	(void) opt;
 
 	return (_putchar(str, str_length(str)));
+}
+/**
+ * print_unsigned_integer - print unsigned integer
+ * @valist: valist
+ * @opt: option to print
+* Return: count of bytes printed
+ */
+int print_unsigned_integer(va_list valist, options opt)
+{
+	char *str;
+	int bytes = 0;
+	(void) opt;
+
+	str = unsigned_number_to_string(va_arg(valist, unsigned int), 10);
+	if (str == NULL)
+	{
+		return (_putchar("(null)", str_length("(null)")));
+	}
+	bytes = _putchar(str, str_length(str));
+	free(str);
+	return (bytes);
+
 }
