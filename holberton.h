@@ -12,14 +12,26 @@
  * @type: i-integers, f-float, s- string
  * @precision: Pricission of the print
  * @length: Length of the print
- * @sign: Sing in printf
+ * @signn: Sing - in printf
+ * @signp: Sing + in printf
+ * @zeros: zero flag in printf
+ * @spc: space flag in printf
+ * @hash: # flag in printf
+ * @point: point flag in printf
  */
 typedef struct options
 {
 	char type;
 	int precision;
 	int length;
-	char sign;
+	int signn;
+	int signp;
+	int zeros;
+	int spc;
+	int hash;
+	int point;
+	int longer;
+	int sh;
 } options;
 
 /**

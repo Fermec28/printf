@@ -59,15 +59,21 @@ unsigned int str_length(char *str)
 int print_integer(va_list valist, options opt)
 {
 	char *str;
+	char flag;
 	int bytes = 0;
-	(void) opt;
 
 	str = number_to_string(va_arg(valist, int), 10);
 	if (str == NULL)
 	{
 		return (_putchar("(null)", str_length("(null)")));
 	}
-	bytes = _putchar(str, str_length(str));
+	if (opt.signp == 1)
+	{
+		flag = '+';
+		write(1,&flag,1);
+		bytes++;
+	}
+	bytes += _putchar(str, str_length(str));
 	free(str);
 	return (bytes);
 }

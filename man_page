@@ -18,6 +18,23 @@ The function produce output according to a format as described below, the output
  character
 .TP
 %s
+ string
+.SH SEE ALSO
+.I printf(3)
+.SH BUGS
+.TP
+Error 96
+ double flag '+' or '-'
+.TP
+Error 97
+ No proper character after '%'
+.TP
+Error 98
+ No '%'
+.TP
+Error 99
+ wrong format
+=======
  string - prints (null) on null string
 .SH Return value
 Returns the number of characters printed (excluding the null byte used to end output to strings)
@@ -27,5 +44,6 @@ The format string is a character string, beginning and ending in its initial shi
 .I printf(3), printf(1)
 .SH BUGS
 Return -1 at print(%) only and print(NULL)
+>>>>>>> 8a9a51ac646b8b548940cbac57ea3c5f19859d46
 .SH AUTHOR
 Ferney Medina, Jaiber Ramirez
